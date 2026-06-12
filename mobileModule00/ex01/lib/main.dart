@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // Quita la cinta de debug
       home: Scaffold(
-        appBar: AppBar(title: const Text("ex01: Say Hello!")),
-        // debugShowCheckedModeBanner: false, // Quita la cinta de debug
+        // appBar: AppBar(title: const Text("ex01: Say Hello!")),
         body: const MyStatefulWidget(),
-      ),
+        ),
     );
   }
 }
