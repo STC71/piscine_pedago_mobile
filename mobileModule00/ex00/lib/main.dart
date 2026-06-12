@@ -1,4 +1,11 @@
 // lib/main.dart
+
+// Este código es un ejemplo básico de una aplicación Flutter que muestra un texto y un botón.
+// Al pulsar el botón, se imprime un mensaje en la consola, pero el texto en la pantalla no cambia.
+// El diseño se centra en el medio de la pantalla, con un fondo blanco, un texto verde y un botón verde, 
+// siguiendo las especificaciones del ejercicio.
+// Será en el próximo ejercicio donde se implementará la funcionalidad para cambiar el texto al pulsar el botón.
+
 import 'package:flutter/material.dart';
 
 void main() {
