@@ -79,15 +79,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     try {
       // Usamos el paquete math_expressions para quitarnos complejidad.
       // Creamos un Parser que es el que se encarga de analizar nuestro texto (ex "4+4") y convertirlo.
-      Parser p = Parser();
+      GrammarParser p = GrammarParser();
+
       Expression exp = p.parse(_expression); // Devuelve una clase Expresión de math_expressions.
 
       // ContextBuilder por defecto sin variables avanzadas.
       ContextModel cm = ContextModel();
-
+      
       // Lo evaluamos retornando un número con decimales de doble presición (double).
-      double eval = exp.evaluate(EvaluationType.REAL, cm);
+      var eval = RealEvaluator(cm);
+      double evalResult = eval.evaluate(exp).toDouble();  // Convertimos a double para que siempre tenga decimales aunque sean .0
+      _result = evalResult.toString();                    // Lo convertimos a texto para mostrarlo en pantalla
 
+      /*
       // Si el número es completamente exacto con 0 decimales reales (ex 5.0).
       if (eval % 1 == 0) {
         // Lo mandaremos como int para quitarnos el ".0" de visual y sea una app con calidad pulida, todo en tipado texto final.
@@ -96,6 +100,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         // Si hay decimales reales que sí aportan (ej. 3.5), se deja normal
         _result = eval.toString();
       }
+      */
+
     } catch (e) {
       // En caso de que pusiéramos 5 + - o una invalidación humana el compilador daría crash, esto nos salva sacando "Error" en _result por pantalla.
       _result = "Error";
@@ -243,10 +249,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                         _buildButton("1", isLandscape: isLandscape),
                         _buildButton("2", isLandscape: isLandscape),
                         _buildButton("3", isLandscape: isLandscape),
-                        _buildButton("+", color: Colors.blue, isLandscape: isLandscape), // Reemplazamos un = por +
+                        _buildButton("+", color: Colors.blue, isLandscape: isLandscape),
                       ]),
                     ),
-                    // Fila 5 - Botón 00, un solo =, y 0
+                    // Fila 5 - Botón 0  .  00  =
                     Expanded(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,

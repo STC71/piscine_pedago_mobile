@@ -1,11 +1,8 @@
-// ================================================
-//  EX02 - More Buttons (Piscine Mobile - Module 00)
-//  Calculadora - Solo Interfaz + Debug Console
-// ================================================
-
+// lib/main.dart
 import 'package:flutter/material.dart';
 
 void main() {
+  // Punto de entrada de la aplicación Flutter
   runApp(const MyApp());
 }
 
@@ -14,169 +11,77 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // MaterialApp es el widget raíz que configura el tema y navegación
     return MaterialApp(
-      title: 'Calculator',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.blueGrey,
-        scaffoldBackgroundColor: const Color(0xFF1E1E1E),
+      title: 'ex00 - Basic Display',
+      debugShowCheckedModeBanner: false, // Quita la cinta de debug
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
-      home: const CalculatorScreen(),
+      home: const MyHomePage(),
     );
   }
 }
 
-class CalculatorScreen extends StatefulWidget {
-  const CalculatorScreen({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<CalculatorScreen> createState() => _CalculatorScreenState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _CalculatorScreenState extends State<CalculatorScreen> {
-  // Controladores para los campos de texto (mejor práctica)
-  final TextEditingController _expressionController = TextEditingController(text: "0");
-  final TextEditingController _resultController = TextEditingController(text: "0");
+class _MyHomePageState extends State<MyHomePage> {
+  // Este es el texto inicial que se muestra
+  String displayText = "A simple text";
 
-  // Función que se llama cuando se pulsa cualquier botón
-  void _onButtonPressed(String value) {
-    // ✅ Usamos debugPrint (mejor que print en Flutter)
-    debugPrint("button pressed: $value");
-
-    // Por ahora solo mostramos en consola (como pide el ejercicio 02)
-    // En el ejercicio 03 aquí actualizaremos la expresión y el resultado
-  }
-
-  @override
-  void dispose() {
-    // Liberamos memoria de los controladores (importante)
-    _expressionController.dispose();
-    _resultController.dispose();
-    super.dispose();
-  }
-
-  // Widget reutilizable para crear botones
-  Widget _buildButton(String text, 
-                     {Color? color, 
-                      Color textColor = Colors.white, 
-                      int flex = 1}) {
-    return Expanded(
-      flex: flex,
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: color ?? const Color(0xFF2A2A2A),
-            foregroundColor: textColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 22),
-            elevation: 3,
-          ),
-          onPressed: () => _onButtonPressed(text),
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    );
+  // Función que se ejecuta al pulsar el botón
+  void _onButtonPressed() {
+    // IMPORTANTE: Solo imprime en consola, NO cambia el estado de la UI
+    debugPrint("Button pressed");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Calculator",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color(0xFF1E1E1E),
-        elevation: 0,
-      ),
-      body: SafeArea(
+      // Fondo blanco como en el ejemplo del subject
+      backgroundColor: Colors.white,
+
+      body: Center(
+        // Center centra vertical y horizontalmente todo su hijo
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Centrado vertical
+          crossAxisAlignment: CrossAxisAlignment.center, // Centrado horizontal
           children: [
-            // === ZONA DE PANTALLA (Expression + Result) ===
+            // === Text Widget ===
             Container(
-              padding: const EdgeInsets.all(16),
-              color: const Color(0xFF1E1E1E),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  // Campo de expresión
-                  TextField(
-                    controller: _expressionController,
-                    readOnly: true,
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(fontSize: 28, color: Colors.white70),
-                    decoration: const InputDecoration(border: InputBorder.none),
-                  ),
-                  const Divider(color: Colors.grey, height: 10),
-                  // Campo de resultado
-                  TextField(
-                    controller: _resultController,
-                    readOnly: true,
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    decoration: const InputDecoration(border: InputBorder.none),
-                  ),
-                ],
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              decoration: BoxDecoration(
+                color: const Color(0xFF8BC34A), // Verde como en la imagen
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                displayText,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
 
-            // === TECLADO ===
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
-                color: const Color(0xFF121212),
-                child: Column(
-                  children: [
-                    // Fila 1
-                    Row(children: [
-                      _buildButton("AC", color: Colors.redAccent),
-                      _buildButton("C", color: Colors.orange),
-                      _buildButton("/", color: Colors.blue),
-                      _buildButton("*", color: Colors.blue),
-                    ]),
-                    // Fila 2
-                    Row(children: [
-                      _buildButton("7"),
-                      _buildButton("8"),
-                      _buildButton("9"),
-                      _buildButton("-", color: Colors.blue),
-                    ]),
-                    // Fila 3
-                    Row(children: [
-                      _buildButton("4"),
-                      _buildButton("5"),
-                      _buildButton("6"),
-                      _buildButton("+", color: Colors.blue),
-                    ]),
-                    // Fila 4
-                    Row(children: [
-                      _buildButton("1"),
-                      _buildButton("2"),
-                      _buildButton("3"),
-                      _buildButton("=", color: Colors.green, textColor: Colors.black),
-                    ]),
-                    // Fila 5 - El 0 ocupa dos espacios
-                    Row(children: [
-                      _buildButton("0", flex: 2),
-                      _buildButton("."),
-                      _buildButton("=", color: Colors.green, textColor: Colors.black),
-                    ]),
-                  ],
-                ),
+            const SizedBox(height: 30), // Espacio entre texto y botón
+
+            // === Button ===
+            ElevatedButton(
+              onPressed: _onButtonPressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF8BC34A),
+                foregroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
+              child: const Text("Press me"),
             ),
           ],
         ),
