@@ -3,99 +3,131 @@
 **Piscine Mobile - Module 00**  
 **Introducción al Desarrollo Mobile con Flutter**
 
- sternero - junio 2026
+<p align="left">
+  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
+  <img src="https://img.shields.io/badge/Material%20Design%203-757575?style=for-the-badge&logo=google&logoColor=white" alt="Material Design 3" />
+  <img src="https://img.shields.io/badge/42_Málaga-000000?style=for-the-badge&logo=42&logoColor=white" alt="42 Málaga" />
+</p>
 
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![42 Málaga](https://img.shields.io/badge/42_Málaga-000000?style=for-the-badge&logo=42&logoColor=white)
+---
+
+## 📑 Índice
+
+- [🎯 Objetivo del Ejercicio](#-objetivo-del-ejercicio)
+- [💡 Comportamiento Esperado](#-comportamiento-esperado)
+- [✨ Características](#-características)
+- [🖼️ Capturas de Pantalla](#-capturas-de-pantalla)
+- [📂 Estructura del Proyecto](#-estructura-del-proyecto)
+- [📚 Conceptos Técnicos para Todos](#-conceptos-técnicos-para-todos)
+- [🚀 Instalación y Uso](#-instalación-y-uso)
+- [✍️ Autor](#️-autor)
 
 ---
 
 ## 🎯 Objetivo del Ejercicio
 
-Desarrollar la **primera aplicación móvil** desde cero utilizando **Flutter**. 
+El propósito de este primer ejercicio es establecer una base sólida en el desarrollo con Flutter. Se ha diseñado una interfaz mínima pero robusta que cumple con los siguientes requisitos:
 
-El objetivo es crear una pantalla simple pero completamente funcional y **responsiva** que demuestre el dominio de los conceptos básicos del framework:
+- **Interfaz Centralizada**: Implementación de un layout perfectamente centrado.
+- **Interacción Básica**: Creación de un botón interactivo.
+- **Consola de Debug**: Impresión de logs para verificar la captura de eventos.
+- **Fidelidad Visual**: Seguir el esquema de colores y disposición propuesto en el subject.
 
-- Mostrar un texto centrado
-- Incluir un botón debajo del texto
-- Que al pulsar el botón se imprima en consola el mensaje: **"Button pressed"**
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
 
 ---
 
-## ✨ Características Implementadas
+## 💡 Comportamiento Esperado
 
-- ✅ Interfaz limpia y moderna siguiendo el **Material Design** de Google
-- ✅ Diseño **100% centrado** tanto horizontal como verticalmente
-- ✅ **Totalmente responsivo**: se adapta perfectamente a teléfonos, tablets y diferentes tamaños de pantalla
-- ✅ Interacción con botón que genera feedback visual y mensaje en consola
-- ✅ Código limpio, estructurado y bien comentado
-- ✅ Cumplimiento estricto de los requisitos del subject
+Para validar que el ejercicio funciona correctamente, sigue estos pasos:
+1. Inicia la aplicación en un emulador o dispositivo físico.
+2. Abre la pestaña **Debug Console** en tu IDE (VS Code o Android Studio).
+3. Pulsa el botón que dice "Click Me".
+4. **Resultado:** Debe aparecer el mensaje `Button pressed` en la consola de depuración instantáneamente.
+
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
+
+---
+
+## ✨ Características
+
+- 🎨 **UI Fiel**: Uso de colores específicos (`0xFF8BC34A`) y estilos de contenedores para replicar el diseño objetivo.
+- 📱 **Responsivo**: Layout flexible basado en el widget `Center` y `Column` que se adapta a cualquier resolución de pantalla.
+- 🛠️ **Material 3**: Uso de las últimas guías de diseño de Google para componentes modernos.
+- 🧹 **Código Limpio**: Organización modular y comentarios detallados para facilitar la lectura.
+
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
 
 ---
 
 ## 🖼️ Capturas de Pantalla
 
-| Teléfono (Portrait) | Tablet / Landscape |
-|---------------------|--------------------|
-| ![Phone Screenshot](screenshots/phone.png) | ![Tablet Screenshot](screenshots/tablet.png) |
+| Vista en Vertical | Vista en Horizontal / Landscape |
+|:---:|:---:|
+| <img src="screenshots/a_simple_text_00.png" width="250" alt="Vertical" /> | <img src="screenshots/a_simple_text_01.png" width="450" alt="Horizontal" /> |
+
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
 
 ---
 
-## 📚 ¿Qué aprendemos? (Explicación Detallada para todos los públicos)
+## 📂 Estructura del Proyecto
 
-Este ejercicio marca el **primer contacto real** con Flutter. Aquí se explican todos los conceptos clave aprendidos:
+```text
+ex00/
+├── lib/                  # El cerebro de la app
+│   └── main.dart         # Aquí es donde ocurre la magia
+├── pubspec.yaml          # La lista de la compra (configuraciones)
+└── README.md             # El manual de instrucciones que estás leyendo
+```
 
-### 1. **Estructura Básica de un Proyecto Flutter**
-- `main.dart` → archivo principal donde inicia la aplicación.
-- `pubspec.yaml` → archivo de configuración (dependencias, assets, etc.).
-- Carpetas `android/` e `ios/` → código nativo generado automáticamente.
-- `lib/` → donde vive todo el código Dart de la app.
-
-### 2. **El Widget Tree (Árbol de Widgets)**
-En Flutter **todo es un Widget**. La interfaz se construye como un árbol:
-- `MaterialApp` → configura la aplicación (título, tema, ruta inicial)
-- `Scaffold` → estructura básica de pantalla (AppBar, Body, FloatingActionButton, etc.)
-- `Center` + `Column` → para centrar elementos
-- `Text` y `ElevatedButton` → widgets básicos de contenido e interacción
-
-### 3. **StatelessWidget vs StatefulWidget**
-- Usamos **StatelessWidget** porque la pantalla no necesita cambiar de estado internamente (por ahora).
-- Entendí la diferencia entre widgets inmutables y aquellos que pueden cambiar con el tiempo.
-
-### 4. **Gestión de Layout y Responsividad**
-- `MainAxisAlignment.center` y `CrossAxisAlignment.center`
-- Uso de `Expanded`, `Padding` y `SafeArea`
-- Cómo hacer que la aplicación se vea bien en cualquier dispositivo sin romperse
-
-### 5. **Manejo de Eventos (Gestos)**
-- `onPressed` del botón
-- Uso de `debugPrint()` (mejor que `print()` en Flutter) para mostrar mensajes en la consola de desarrollo
-
-### 6. **Temas y Estilos**
-- Aplicación de `ThemeData.dark()`
-- Personalización de colores, tipografía y elevación de botones
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
 
 ---
 
-## 🛠️ Tecnologías y Conceptos Clave
+## 📚 Conceptos Técnicos para Todos
 
-- **Flutter** → Framework de Google para crear aplicaciones nativas compiladas desde un solo código base (iOS + Android)
-- **Dart** → Lenguaje de programación moderno, orientado a objetos y con tipado fuerte
-- **Widgets** → Bloques de construcción básicos (comparables a componentes en React)
-- **Hot Reload** → Una de las características más potentes de Flutter (ver cambios en tiempo real)
-- **Material Design** → Sistema de diseño de Google
+Si es tu primera vez viendo código de Flutter, no te asustes. Vamos a explicarlo con ejemplos de la vida real:
+
+### 1. ¿Qué es un Widget? (La analogía del LEGO) 🧱
+Imagina que Flutter es un juego de **LEGO**. Cada pieza (un botón, un texto, una imagen) es un **Widget**. Para construir la app, simplemente encajamos unas piezas dentro de otras. 
+*   **Ejemplo:** Un botón (`ElevatedButton`) contiene una pieza de texto (`Text`).
+
+### 2. El método `build` (El manual de instrucciones) 📖
+Cada Widget tiene una función llamada `build`. Es como el manual de instrucciones que le dice a Flutter: *"Para montar esta pantalla, pon un fondo blanco, un texto arriba y un botón abajo"*. Flutter lee este manual constantemente para dibujar la app en tu móvil.
+
+### 3. `Center` y `Column` (El decorador de interiores) 🛋️
+- **Center:** Es como colgar un cuadro exactamente en el medio de la pared. No importa lo grande que sea la pared, el cuadro siempre estará en el centro.
+- **Column:** Imagina una estantería vertical. Los objetos que pongas dentro se apilarán uno debajo de otro.
+
+### 4. `debugPrint` (El diario de bitácora) 📝
+Cuando pulsas el botón, usamos `debugPrint('Button pressed')`. Esto no cambia nada en la pantalla del móvil, pero escribe una nota en una consola secreta que solo los programadores vemos. Es nuestra forma de saber que "el cableado interno" del botón funciona bien.
+
+### 5. `main.dart` (La puerta principal) 🔑
+En todo proyecto Flutter hay un archivo llamado `main.dart`. Es como la puerta principal de una casa; es el primer sitio al que entra el sistema operativo para saber cómo arrancar tu aplicación.
+
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
 
 ---
 
-## 🚀 Cómo Ejecutar el Proyecto
+## 🚀 Instalación y Uso
 
-```bash
-# 1. Clonar o entrar en la carpeta
-cd mobileModule00/ex00
+### ⚙️ Requisitos de Entorno
+- **Flutter SDK:** ^3.19.0 (El motor de la app)
+- **Dart SDK:** ^3.3.0 (El lenguaje en el que escribimos)
 
-# 2. Instalar dependencias
-flutter pub get
+### Pasos para ejecutar
+1. **Acceder a la carpeta:** `cd mobileModule00/ex00`
+2. **Obtener piezas:** `flutter pub get` (Esto descarga las librerías necesarias).
+3. **Arrancar:** `flutter run` (Esto enciende el motor y lanza la app).
 
-# 3. Ejecutar en emulador o dispositivo físico
-flutter run
+[⬆ Volver al inicio](#-exercise-00---a-basic-display)
+
+---
+
+## ✍️ Autor
+
+**[sternero](https://github.com/STC71)** - junio 2026
+
+---
+<p align="center">Proyecto realizado para la Piscine Mobile en 42 Málaga</p>
